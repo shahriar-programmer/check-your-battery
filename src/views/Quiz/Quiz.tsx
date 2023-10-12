@@ -6,9 +6,10 @@ import Question from '../../components/Quiz/Question';
 import Header from '../../components/Common/Header';
 import data from '../../data/data'
 import { useState } from 'react';
+import { ScreenViewType } from '../../App';
 
 type QuizProps = {
-    setScreenView: React.Dispatch<React.SetStateAction<"quiz" | "result">>;
+    setScreenView: React.Dispatch<React.SetStateAction<ScreenViewType>>;
     setScore: React.Dispatch<React.SetStateAction<number>>;
 }
 
