@@ -8,8 +8,14 @@ type HeaderProps = {
 
 export default function Header({ setCurrentQuizID, currentQuizID }: HeaderProps) {
     return (
-        <ActionIcon disabled={currentQuizID === 1} onClick={() => setCurrentQuizID(prevValue => prevValue - 1)} size="lg" variant="light" color='white' aria-label="Settings" pos="absolute" top={10} left={8}>
-            <IconArrowLeft style={{ width: '100%', height: '100%' }} stroke={1.5} />
-        </ActionIcon>
+        <>
+            {
+                currentQuizID != 1 && (
+                    <ActionIcon onClick={() => setCurrentQuizID(prevValue => prevValue - 1)} size="lg" variant="light" color='white' aria-label="Settings" pos="absolute" top={10} left={8}>
+                        <IconArrowLeft style={{ width: '100%', height: '100%' }} stroke={1.5} />
+                    </ActionIcon>
+                )
+            }
+        </>
     )
 }

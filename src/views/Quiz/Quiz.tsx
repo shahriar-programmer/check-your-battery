@@ -1,4 +1,4 @@
-import { Box, Container } from '@mantine/core';
+import { Box } from '@mantine/core';
 import classes from "./Quiz.module.css"
 import ProgressBar from '../../components/Quiz/ProgressBar';
 import OptionGroup from '../../components/Quiz/OptionGroup';
@@ -61,17 +61,17 @@ export default function Quiz({ setScreenView, setScore }: QuizProps) {
                 return
             }
             setCurrentQuizID(prevValue => prevValue + 1)
-        }, 1000);
+        }, 200);
     }
 
     return (
-        <Container h={"100vh"} p={0}>
+        <>
             <Box h={"25vh"} className={classes.top_notch} pos="relative">
                 <Header setCurrentQuizID={setCurrentQuizID} currentQuizID={currentQuizID} />
                 <Question question={quizData?.find(i => i.id == currentQuizID)?.question || ''} />
             </Box>
             <OptionGroup selectOption={selectOption} allOption={quizData?.find(i => i.id == currentQuizID)?.options || []} />
             <ProgressBar value={((currentQuizID-1) / quizData.length) * 100} />
-        </Container >
+        </>
     )
 }
