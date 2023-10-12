@@ -1,4 +1,4 @@
-import { Box } from '@mantine/core';
+import { Box, Stack } from '@mantine/core';
 import classes from "./Quiz.module.css"
 import ProgressBar from '../../components/Quiz/ProgressBar';
 import OptionGroup from '../../components/Quiz/OptionGroup';
@@ -11,6 +11,7 @@ import { ScreenViewType } from '../../App';
 type QuizProps = {
     setScreenView: React.Dispatch<React.SetStateAction<ScreenViewType>>;
     setScore: React.Dispatch<React.SetStateAction<number>>;
+    screenView: ScreenViewType
 }
 
 export type OptionSingleType = {
@@ -25,7 +26,7 @@ export type QuizDataType = {
     options: OptionSingleType[]
 }
 
-export default function Quiz({ setScreenView, setScore }: QuizProps) {
+export default function Quiz({ setScreenView, setScore, screenView }: QuizProps) {
     const [quizData, setQuizData] = useState<QuizDataType[]>(data)
     const [currentQuizID, setCurrentQuizID] = useState(1)
 
@@ -67,12 +68,14 @@ export default function Quiz({ setScreenView, setScore }: QuizProps) {
 
     return (
         <>
-            <Box h={"25vh"} className={classes.top_notch} pos="relative">
-                <Header setCurrentQuizID={setCurrentQuizID} currentQuizID={currentQuizID} />
-                <Question question={quizData?.find(i => i.id == currentQuizID)?.question || ''} />
-            </Box>
-            <OptionGroup selectOption={selectOption} allOption={quizData?.find(i => i.id == currentQuizID)?.options || []} />
-            <ProgressBar value={((currentQuizID-1) / quizData.length) * 100} />
+            <Stack className={classes.quiz} pos={"absolute"} w="100%" top="0" left={screenView == "quiz" ? "0%" : "-100%"}>
+                <Box h={"25vh"} className={classes.top_notch} pos="relative">
+                    <Header setCurrentQuizID={setCurrentQuizID} currentQuizID={currentQuizID} />
+                    <Question question={quizData?.find(i => i.id == currentQuizID)?.question || ''} />
+                </Box>
+                <OptionGroup selectOption={selectOption} allOption={quizData?.find(i => i.id == currentQuizID)?.options || []} />
+                <ProgressBar value={((currentQuizID - 1) / quizData.length) * 100} />
+            </Stack>
         </>
     )
 }

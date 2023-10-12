@@ -1,13 +1,15 @@
-import { ActionIcon, Modal, Stack, Text } from "@mantine/core";
+import { ActionIcon, Group, Modal, Stack, Text } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { IconArrowLeft, IconCode } from "@tabler/icons-react";
+import { IconArrowLeft, IconCode, IconHome } from "@tabler/icons-react";
+import { ScreenViewType } from "../../App";
 
 type HeaderProps = {
     setCurrentQuizID?: React.Dispatch<React.SetStateAction<number>>;
     currentQuizID?: number,
+    screenView?: ScreenViewType
 }
 
-export default function Header({ setCurrentQuizID, currentQuizID }: HeaderProps) {
+export default function Header({ setCurrentQuizID, currentQuizID, screenView }: HeaderProps) {
     const [opened, { open, close }] = useDisclosure(false);
     return (
         <>
@@ -28,16 +30,25 @@ export default function Header({ setCurrentQuizID, currentQuizID }: HeaderProps)
                 </Stack>
             </Modal>
 
-            {
-                currentQuizID && currentQuizID != 1 && (
-                    <ActionIcon onClick={() => setCurrentQuizID && setCurrentQuizID(prevValue => prevValue - 1)} size="lg" variant="light" color='white' aria-label="Settings" pos="absolute" top={10} left={8}>
-                        <IconArrowLeft style={{ width: '100%', height: '100%' }} stroke={1.5} />
-                    </ActionIcon>
-                )
-            }
-            <ActionIcon onClick={open} size="lg" variant="light" color='white' aria-label="Settings" pos="absolute" top={10} right={12}>
-                <IconCode style={{ width: '100%', height: '100%' }} stroke={1.5} />
-            </ActionIcon>
+            <Group justify="space-between" w="100%" px={10} pos="absolute" top={10} left={0} right={0}>
+                {
+                    currentQuizID && currentQuizID != 1 ? (
+                        <ActionIcon onClick={() => setCurrentQuizID && setCurrentQuizID(prevValue => prevValue - 1)} size="lg" variant="light" color='white' aria-label="Settings">
+                            <IconArrowLeft style={{ width: '100%', height: '100%' }} stroke={1.5} />
+                        </ActionIcon>
+                    ) : <Text></Text>
+                }
+                {
+                    screenView == "result" && (
+                        <ActionIcon component="a" href="/" size="lg" variant="light" color='white' aria-label="Settings">
+                            <IconHome style={{ width: '100%', height: '100%' }} stroke={1.5} />
+                        </ActionIcon>
+                    )
+                }
+                <ActionIcon onClick={open} size="lg" variant="light" color='white' aria-label="Settings">
+                    <IconCode style={{ width: '100%', height: '100%' }} stroke={1.5} />
+                </ActionIcon>
+            </Group>
         </>
     )
 }

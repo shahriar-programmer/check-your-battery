@@ -12,16 +12,19 @@ function App() {
 
   return (
     <>
-      <Container h={"100vh"} w="100%" maw={"450px"} p={0}>
-        {
+      <Container h={"100vh"} w="100%" maw={"450px"} p={0} style={{overflow: "hidden"}} pos="relative">
+        <Splash screenView={screenView} setScreenView={setScreenView} />
+        <Quiz screenView={screenView} setScore={setScore} setScreenView={setScreenView} />
+        <Result screenView={screenView} setScreenView={setScreenView} score={score} />
+        {/* {
           screenView === "quiz" ?
             <Quiz setScore={setScore} setScreenView={setScreenView} />
             :
             screenView == "result" ?
               <Result setScreenView={setScreenView} score={score} />
               :
-              <Splash setScreenView={setScreenView}/>
-        }
+              <Splash setScreenView={setScreenView} />
+        } */}
       </Container>
     </>
   )

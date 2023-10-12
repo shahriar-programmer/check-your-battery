@@ -4,10 +4,11 @@ import { IconPower } from "@tabler/icons-react";
 import { ScreenViewType } from "../../App";
 
 type SplashProps = {
+    screenView: ScreenViewType;
     setScreenView: React.Dispatch<React.SetStateAction<ScreenViewType>>;
 }
 
-export default function Splash({ setScreenView }: SplashProps) {
+export default function Splash({ screenView, setScreenView }: SplashProps) {
 
     const goToQuiz = () => {
         setTimeout(() => {
@@ -16,7 +17,7 @@ export default function Splash({ setScreenView }: SplashProps) {
     }
 
     return (
-        <Flex w={"100%"} h={"100vh"} justify={"center"} align="center" direction={"column"} gap={0} className={classes.splash}>
+        <Flex w={"100%"} h={"100vh"} justify={"center"} align="center" direction={"column"} gap={0} className={classes.splash} pos={"absolute"} top="0" left={screenView == "splash" ? "0%" : "-100%"}>
             <Text size="30px" fw="bolder" c="white" >Check Your Battery</Text>
             <Text size="sm" fw="bolder" c="white" mt={5}>by Shahriar Ahmed Shovon</Text>
             <Flex justify="center" align="center" pos="relative" mt={200}>

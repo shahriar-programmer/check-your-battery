@@ -1,6 +1,7 @@
 .splash{
     background: rgb(27,136,190);
     background: linear-gradient(99deg, rgba(27,136,190,0.8225490879945728) 0%, rgba(16,148,213,1) 100%); 
+    transition: all 0.5s ease-in;
 }
 
 .outer{

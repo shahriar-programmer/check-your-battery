@@ -1,14 +1,23 @@
+:root {
+    --height-value: 0px;
+  }
+
 .result{
-/* background: linear-gradient(to bottom, #d7dde8c0, #d3d4dad0); */
-background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+background: linear-gradient(to top right, #FFFFFF, #d8f0d1);
+transition: all 0.5s ease-in;
 
 }
 
 .battery{
-    background: linear-gradient(to top, #f2fcfe, #1c92d2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */   
+    animation: IncreaseHeightAnimation;
+    animation-duration: 6s;
 
 }
 
-.top_notch{
-    /* background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+  /* Css animation keyframe for increasing height of a div */
+  @keyframes IncreaseHeightAnimation {
+    0% {
+      height: 0%;
+    }
   }
+
