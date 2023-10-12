@@ -13,9 +13,7 @@ type ResultProps = {
 
 export default function Result({ score, screenView }: ResultProps) {
     const [opened, { open, close }] = useDisclosure(false);
-
-    score = 55
-
+    
     return (
         <>
             <Modal opened={opened} onClose={close} title="Advice" centered>
